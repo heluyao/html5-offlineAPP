@@ -1,0 +1,117 @@
+<!DOCTYPE html>  
+<html manifest="heluyao.manifest">  
+<head>  
+<meta charset="utf-8" />  
+<title>cache</title>
+
+<meta charset="utf-8"></head>
+<body>
+<div>
+	<div class="list">
+		<ul id="wrap-list"></ul>
+	</div>
+</div>
+<div id="wrap-articles"></div>
+<script type="text/template" id="tpl-list">
+<li onclick="OfflineAPP.getArticles({{id}});">{{title}} - {{date}}<p>{{snip}}</p></li>
+</script>
+<script type="text/template" id="tpl-articles">
+<div class="article">
+	<h1>{{title}}</h1>
+	<p>作者：{{byline}}　 发表时间：{{date}}</p>
+	<div class="article_content">{{content}}</div>
+	<div class="keywords">{{keywords}}</div>
+</div>
+</script>
+<script>
+var ls = {
+	set:function(name,value){
+		return localStorage.setItem(name,value);
+	},
+	get:function(name){
+		return localStorage.getItem(name);
+	},
+	isoffline:function(){
+		return 'onLine'in window.navigator&&!1===window.navigator.onLine
+	}
+}
+function h(d,c){
+	c||(c={});
+	var a=new XMLHttpRequest;
+	d+=(-1==d.indexOf('?')?'?':'&')+'_='+Date.now();
+	a.open('GET',d,!0);
+	a.setRequestHeader&&a.setRequestHeader('X-Requested-With','XMLHttpRequest');
+	a.onreadystatechange=function(){
+		4==a.readyState&&(200!=a.status?c.error&&c.error(a.status,a.responseText):c.success&&c.success(a.responseText))
+	};
+	c.progress&&'function'==typeof a.addEventListener&&a.addEventListener('progress',function(a){c.progress(a)},!1);
+	a.send(null);
+	return a;
+}
+var init = function(){
+	var d;
+	if(d=localStorage.getItem('layout-css')){
+		var skin = document.createElement('style');
+		document.getElementsByTagName('head')[0].appendChild(skin);
+		skin.appendChild(document.createTextNode(d));
+	}else{
+		h('css/layout.css',{
+			error:function(){
+				window.setTimeout(function(){
+					console.info('error');
+				},1E3)
+			},
+			success:function(a){
+				ls.set('layout-css',a);
+				var skin = document.createElement('style');
+				document.getElementsByTagName('head')[0].appendChild(skin);
+				skin.appendChild(document.createTextNode(a));
+			}
+		});
+	}
+	if(!('JSON'in window)){
+		if(d=localStorage.getItem('json2-js')){
+			window.eval(d);
+		}else{
+			h('js/json2.js',{
+				error:function(){
+					window.setTimeout(function(){
+						console.info('error');
+					},1E3)
+				},
+				success:function(a){
+					try{
+						window.eval(a);
+					}catch(c){}
+					ls.set('json2-js',a);
+				}
+			});
+		}
+	}
+	if(d=localStorage.getItem('heluyao-js')){
+		window.eval(d);
+		setTimeout(function(){
+			OfflineAPP.init();
+		},100);
+	}else{
+		h('js/heluyao-nojq.js',{
+			error:function(){
+				window.setTimeout(function(){
+					console.info('error');
+				},1E3)
+			},
+			success:function(a){
+				try{
+					window.eval(a);
+				}catch(e){}
+				setTimeout(function(){
+					ls.set('heluyao-js',a);
+					OfflineAPP.init();
+				},100);
+			}
+		});
+	}
+}();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# r.1295
+
+# 直接缓存的文件
+CACHE:
+/
+/index-nojq.html
+images/mayday.jpg
+
+
+# 需要在时间在线的文件
+NETWORK:
+*
+
+# 替代方案
+FALLBACK:
+
+
