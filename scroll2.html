@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>无标题文档</title>
+<meta name="apple-touch-fullscreen" content="YES" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="HandheldFriendly" content="true" />
+	<meta http-equiv="x-rim-auto-match" content="none" />
+
+
+<style type="text/css">
+body { margin:0; padding:0;}
+.wrapper { background:#fff1e0;min-height:100%;overflow:hidden;position:relative;}
+.screencolumn { position:absolute; width:100%; height:800px; left:0; top:0; border:1px solid #000;}
+.wrapper .col_1 { -webkit-transform: translate3d(-100%, 0px, 0px) scale(1);transform: translate(-100%, 0px) scale(1);}
+.wrapper .col_2 { -webkit-transform: translate3d(0px, 0px, 0px) scale(1);transform: translate(0px, 0px) scale(1); height:1200px;}
+.wrapper .col_3 { -webkit-transform: translate3d(100%, 0px, 0px);transform: translate(100%, 0px) scale(1);}
+.wrapper .centerColumn { position:relative;}
+.wrapper .inner {}
+.one { background-color:#f00}
+.two { background-color:#36c;}
+</style>
+<script type="text/javascript">
+window.deviceIsAndroid = (window.navigator.userAgent.toLowerCase().search('android') > -1);
+			if (window.deviceIsAndroid) {
+				targetDPI = 160;
+				if (window.navigator.userAgent.match(/gt-p10\d0|sgh-i987|sph-p100|sgh-t849|sch-i800|shw-m180s|sc-01c/i)) targetDPI = 'device-dpi';
+				document.write('<meta name="viewport" content="target-densityDpi='+targetDPI+',width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />');
+			} else if (window.navigator.userAgent.match(/iphone|ipad|ipod/i)) {
+				document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />');
+			} else {
+				document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />');
+			}
+</script>
+</head>
+
+<body>
+<div class="wrapper" id="wrapper">
+	<div class="screencolumn col_1" id="col_1">
+		<div class="one">one</div>
+	</div>
+	<div class="screencolumn col_2 centerColumn" id="col_2">
+		<div class="two"><a href="#">two</a><input type="text" /></div>
+	</div>
+	<div class="screencolumn col_3" id="col_3">
+		<div class="three">three</div>
+	</div>
+</div>
+<script type="text/javascript">
+addEventListener("load",function(){setTimeout(hideURLbar,0)},false); 
+function hideURLbar(){ 
+	window.scrollTo(0,1);
+}
+/*
+addEventListener("scroll",function(){setTimeout(scrollHandler,0)},false);
+function scrollHandler(){
+	
+	var sT = window.pageYOffset;
+
+
+	document.getElementById('sc').innerHTML = sT;
+	document.getElementById('sc').style.marginTop = sT+'px';
+	if(sT < 10 && sT > 0)hideURLbar();
+}
+*/
+var data_obj = {
+	'pages':[
+		{'html':'<div class="one">one</div>'},
+		{'html':'<div class="two"><a href="#">two</a></div>'},
+		{'html':'<div class="three">three</div>'},
+		{'html':'<div class="four">four</div>'},
+		{'html':'<div class="five">five</div>'},
+		{'html':'<div class="six">six</div>'}
+	]
+}
+/*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js*/
+if(typeof document!=="undefined"&&!("classList" in document.createElement("a"))){(function(j){var a="classList",f="prototype",m=(j.HTMLElement||j.Element)[f],b=Object,k=String[f].trim||function(){return this.replace(/^\s+|\s+$/g,"")},c=Array[f].indexOf||function(q){var p=0,o=this.length;for(;p<o;p++){if(p in this&&this[p]===q){return p}}return -1},n=function(o,p){this.name=o;this.code=DOMException[o];this.message=p},g=function(p,o){if(o===""){throw new n("SYNTAX_ERR","An invalid or illegal string was specified")}if(/\s/.test(o)){throw new n("INVALID_CHARACTER_ERR","String contains an invalid character")}return c.call(p,o)},d=function(s){var r=k.call(s.className),q=r?r.split(/\s+/):[],p=0,o=q.length;for(;p<o;p++){this.push(q[p])}this._updateClassName=function(){s.className=this.toString()}},e=d[f]=[],i=function(){return new d(this)};n[f]=Error[f];e.item=function(o){return this[o]||null};e.contains=function(o){o+="";return g(this,o)!==-1};e.add=function(o){o+="";if(g(this,o)===-1){this.push(o);this._updateClassName()}};e.remove=function(p){p+="";var o=g(this,p);if(o!==-1){this.splice(o,1);this._updateClassName()}};e.toggle=function(o){o+="";if(g(this,o)===-1){this.add(o)}else{this.remove(o)}};e.toString=function(){return this.join(" ")};if(b.defineProperty){var l={get:i,enumerable:true,configurable:true};try{b.defineProperty(m,a,l)}catch(h){if(h.number===-2146823252){l.enumerable=false;b.defineProperty(m,a,l)}}}else{if(b[f].__defineGetter__){m.__defineGetter__(a,i)}}}(self))};
+
+(function(){
+	var vendor = (/webkit/i).test(navigator.appVersion) ? 'webkit' :
+		(/firefox/i).test(navigator.userAgent) ? 'Moz' :
+		'opera' in window ? 'O' : '',
+		isAndroid = (/android/gi).test(navigator.appVersion),
+		isTouchPad = (/hp-tablet/gi).test(navigator.appVersion),
+		has3d = 'WebKitCSSMatrix' in window && 'm11' in new WebKitCSSMatrix(),
+		hasTouch = 'ontouchstart' in window && !isTouchPad,
+		hasTransform = vendor + 'Transform' in document.documentElement.style,
+		
+		dragstart
+		
+		RESIZE_EV = 'onorientationchange' in window ? 'orientationchange' : 'resize',
+		START_EV = hasTouch ? 'touchstart' : 'mousedown',
+		MOVE_EV = hasTouch ? 'touchmove' : 'mousemove',
+		END_EV = hasTouch ? 'touchend' : 'mouseup',
+		CANCEL_EV = hasTouch ? 'touchcancel' : 'mouseup',
+		
+		trnOpen = 'translate' + (has3d ? '3d(' : '('),
+		trnClose = has3d ? ',0)' : ')',
+		cancelFrame = (function () {
+		return (window.cancelRequestAnimationFrame ||
+				window.webkitCancelAnimationFrame ||
+				window.webkitCancelRequestAnimationFrame ||
+				window.mozCancelRequestAnimationFrame ||
+				window.oCancelRequestAnimationFrame ||
+				window.msCancelRequestAnimationFrame ||
+				clearTimeout);
+		})();
+		
+	if ( isAndroid ){
+		trnOpen = 'translate(';
+		trnClose = ')';
+	}
+	
+	var doc = document,w = doc.getElementById('wrapper');
+	
+	window.Scroll = {
+		hScroll: true,
+		vScroll: false,
+		momentum: true,
+		col_1: doc.getElementById('col_1'),
+		col_2: doc.getElementById('col_2'),
+		col_3: doc.getElementById('col_3'),
+		cW: document.body.clientWidth,
+		start_time: '',
+		over_time: '',
+		index: 0,
+		datas: data_obj['pages'],
+		dataLen: data_obj['pages'].length - 1,
+		pageIndex: 0,
+		perc:{
+			'-1':['0','100%','-100%'],
+			'0':['-100%','0','100%'],
+			'1':['100%','-100%','0']
+		},
+		nums:{
+			'-1':['0',1424,-1424],
+			'0':[-1424,'0',1424],
+			'1':[1424,-1424,'0']
+		},
+		
+		useTransform : hasTransform ? true : false,
+		handleEvent: function (e) {
+			var that = this;
+			switch(e.type) {
+				case START_EV:
+					if (!hasTouch && e.button !== 0) return;
+					that._start(e);
+					break;
+				case MOVE_EV: that._move(e); break;
+				case END_EV:
+				case CANCEL_EV: that._end(e); break;
+				
+			}
+		},
+		_start: function (e) {
+			var that = this,x,y,
+				point = hasTouch ? e.touches[0] : e;
+			that.pointX = point.pageX;
+			that.pointY = point.pageY;
+			
+			that.col_2.style[vendor + 'Transition'] = '-'+vendor+'-transform 0s ease-out';
+			that.col_1.style[vendor + 'Transition'] = '-'+vendor+'-transform 0s ease-out';
+			that.col_3.style[vendor + 'Transition'] = '-'+vendor+'-transform 0s ease-out';
+			
+			if (that.momentum) {
+				if (that.useTransform) {
+					// Very lame general purpose alternative to CSSMatrix
+					matrix = getComputedStyle(that.col_2, null)[vendor + 'Transform'].replace(/[^-0-9.,]/g, '').split(',');
+					x = matrix[4] * 1;
+					y = matrix[5] * 1;
+				} else {
+					
+					x = getComputedStyle(that.col_2, null).left.replace(/[^-0-9]/g, '') * 1;
+					y = getComputedStyle(that.col_2, null).top.replace(/[^-0-9]/g, '') * 1;
+				}
+				if (x != that.x || y != that.y) {
+					if (that.useTransition) that._unbind('webkitTransitionEnd');
+					else cancelFrame(that.aniTime);
+					that.steps = [];
+					that._pos(x, y);
+				}
+			}
+			that.start_time = new Date().getTime();
+			
+			that._bind(MOVE_EV);
+			that._bind(END_EV);
+			that._bind(CANCEL_EV);
+		},
+		_move: function (e) {
+			var that = this,
+			point = hasTouch ? e.touches[0] : e,
+			deltaX = point.clientX - that.pointX;
+			deltaY = point.clientY - that.pointY;
+			
+			if(Math.abs(deltaY*2) < Math.abs(deltaX) && Math.abs(deltaX) > 20){
+				that.col_2.style[vendor + 'Transform'] = trnOpen + (parseInt(that.nums[that.index][1],10)+deltaX) + 'px,' + '0' + trnClose + ' scale(1)';
+				that.col_1.style[vendor + 'Transform'] = trnOpen + (parseInt(that.nums[that.index][0],10)+deltaX) + 'px,' + '0' + trnClose + ' scale(1)';
+				that.col_3.style[vendor + 'Transform'] = trnOpen + (parseInt(that.nums[that.index][2],10)+deltaX) + 'px,' + '0' + trnClose + ' scale(1)';
+				that._pos(deltaX, 0);
+				
+			}
+			e.preventDefault();
+		},
+		_end: function (e) {
+			if (hasTouch && e.touches.length !== 0) return;
+			var that = this,
+				point = hasTouch ? e.changedTouches[0] : e;
+			
+			deltaX = point.clientX - that.pointX;
+			that.over_time = new Date().getTime();
+			
+			if(parseInt(that.over_time - that.start_time,10) < 100 && Math.abs(deltaX) > parseInt(that.cW/20,10) || Math.abs(deltaX) > parseInt(document.body.clientWidth/2,10) ){
+				animate(!!1);
+			}else{
+				animate(!1);
+			}
+			function animate(t){
+				that.col_2.style[vendor + 'Transition'] = '-'+vendor+'-transform 0.5s ease-out';
+				that.col_1.style[vendor + 'Transition'] = '-'+vendor+'-transform 0.5s ease-out';
+				that.col_3.style[vendor + 'Transition'] = '-'+vendor+'-transform 0.5s ease-out';
+				if(t){
+					deltaX>0?(function(){//上一个
+						if(that.perc[that.index][1] === '100%'){
+							that.col_2.style[vendor + 'Transition'] = '';
+						}else if(that.perc[that.index][0] === '100%'){
+							that.col_1.style[vendor + 'Transition'] = '';
+						}else if(that.perc[that.index][2] === '100%'){
+							that.col_3.style[vendor + 'Transition'] = '';
+						}
+						that.index = that.index === -1?1:--that.index;
+						that.pageIndex = that.pageIndex === 0?that.dataLen:--that.pageIndex;
+					})():(function(){//下一个
+						if(that.perc[that.index][1] === '-100%'){
+							that.col_2.style[vendor + 'Transition'] = '';
+						}else if(that.perc[that.index][0] === '-100%'){
+							that.col_1.style[vendor + 'Transition'] = '';
+						}else if(that.perc[that.index][2] === '-100%'){
+							that.col_3.style[vendor + 'Transition'] = '';
+						}
+						that.index = that.index === 1?-1:++that.index;
+						that.pageIndex = that.pageIndex === that.dataLen?0:++that.pageIndex;
+					})();
+					var cC = doc.querySelector('.centerColumn');
+					var sC = doc.querySelectorAll('.screencolumn')[that.index+1];
+					cC.classList.remove('centerColumn');
+					sC.classList.add('centerColumn');
+					
+					var dIndex = that.pageIndex + 1 === 6?0:that.pageIndex + 1;
+					doc.querySelectorAll('.screencolumn')[that.index+1].innerHTML = that.datas[dIndex]['html'];
+				}else{
+					that.col_2.style[vendor + 'Transition'] = '-'+vendor+'-transform 0.2s ease-out';
+					that.col_1.style[vendor + 'Transition'] = '-'+vendor+'-transform 0.2s ease-out';
+					that.col_3.style[vendor + 'Transition'] = '-'+vendor+'-transform 0.2s ease-out';
+				}
+				that.col_2.style[vendor + 'Transform'] = trnOpen + that.perc[that.index][1] + ',' + '0' + trnClose + ' scale(1)';
+				that.col_1.style[vendor + 'Transform'] = trnOpen + that.perc[that.index][0] + ',' + '0' + trnClose + ' scale(1)';
+				that.col_3.style[vendor + 'Transform'] = trnOpen + that.perc[that.index][2] + ',' + '0' + trnClose + ' scale(1)';
+				
+			}
+			
+								
+			that._unbind(MOVE_EV);
+			that._unbind(END_EV);
+			that._unbind(CANCEL_EV);
+			
+		},
+		_bind: function (type, el, bubble) {
+			doc.addEventListener(type, this, !!bubble);
+		},
+		_unbind: function (type, el, bubble) {
+			doc.removeEventListener(type, this, !!bubble);
+		},
+		_pos: function (x, y) {
+			x = this.hScroll ? x : 0;
+			y = this.vScroll ? y : 0;
+			this.x = x;
+			this.y = y;
+		},
+		//public methods
+		getValues: function(){
+			
+		}
+
+	}
+	Scroll._bind(START_EV);
+})();
+
+
+
+setInterval(function() {
+	var values = window.Scroll.getValues();	
+}, 500);
+</script>
+</body>
+</html>
